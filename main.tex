@@ -1,11 +1,29 @@
+%===============================================================================
+% A Consolidated Overview of Evaluation and Performance Metrics for
+%  Machine Learning and Computer Vision
+%===============================================================================
+% v0.2 - 11.05.2024 (this version): general text work
+% v0.1 - 01.11.2023: init
+%
+% 2023-2024 Tobias Schlosser, Michael Friedrich, Trixy Meyer, and Danny Kowerko
+%
+% This manuscript is licensed under the Creative Commons Attribution 4.0
+%  International (CC BY 4.0) license
+%  https://creativecommons.org/licenses/by/4.0/deed
+%===============================================================================
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% documentclass
+
 \documentclass{article}
 
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
 
 
-
-% General
-
+% usepackages
 
 \usepackage{lmodern, mathtools, microtype, textgreek}
 
@@ -13,10 +31,11 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-
 \usepackage[hyphens]{url}
 \usepackage[colorlinks, citecolor=LimeGreen, pagebackref=true]{hyperref}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
+
+\usepackage{cite}
 
 % https://ctan.net/macros/latex/contrib/hyperref/doc/hyperref-doc.pdf
 \renewcommand*{\backref}[1]{}
@@ -38,9 +57,18 @@
 	} \fi
 }
 
-
 \usepackage{tikz}
-\usetikzlibrary{arrows, backgrounds, calc, decorations, calligraphy, external, fit, positioning, shapes, spy}
+\usetikzlibrary{
+	arrows,
+	backgrounds,
+	calc,
+	decorations,
+	calligraphy,
+	fit,
+	positioning,
+	shapes,
+	spy
+}
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
@@ -48,11 +76,11 @@
 
 \usepackage[hang]{caption}
 
-\usepackage{array, diagbox, float, multirow, subfig, xfrac}
+\usepackage{array, diagbox, float, makecell, multirow, subfig, tabularx, xfrac}
 
 \usepackage[export]{adjustbox}
 
-\usepackage[defaultlines=3, all]{nowidow}
+\usepackage[defaultlines=10, all]{nowidow}
 
 \setlength{\parskip}{   1em }
 \setlength{\parindent}{ 0em }
@@ -60,30 +88,27 @@
 \addtolength{\skip\footins}{1cm}
 
 \renewcommand*{\arraystretch}{1.33}
+
 \linespread{1.1}\selectfont
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 
-
-
 % ORCID
 
 \usepackage{fontawesome5}
-% \usepackage{hyperref}
-% \usepackage{xcolor}
 
-\newcommand{\ORCID}[1]{\thinspace\textsuperscript{\href{https://orcid.org/#1}{\textcolor[HTML]{A6CE39}{\faOrcid}}}}
+% With / without "\thinspace" before "\textsuperscript{...}"
+% \newcommand{\ORCID}[1]{\thinspace\textsuperscript{\href{https://orcid.org/#1}{\textcolor[HTML]{A6CE39}{\faOrcid}}}}
+\newcommand{\ORCID}[1]{\textsuperscript{\href{https://orcid.org/#1}{\textcolor[HTML]{A6CE39}{\faOrcid}}}}
 
-\newcommand{\ORCIDFriedrich}{0000-0001-6326-4749} % ORCID Michael Friedrich
-\newcommand{\ORCIDKowerko}{0000-0002-4538-7814}   % ORCID Danny Kowerko
-\newcommand{\ORCIDMeyer}{0000-0002-3372-1619}     % ORCID Trixy Meyer
 \newcommand{\ORCIDSchlosser}{0000-0002-0682-4284} % ORCID Tobias Schlosser
+\newcommand{\ORCIDFriedrich}{0000-0001-6326-4749} % ORCID Michael Friedrich
+\newcommand{\ORCIDMeyer}{0000-0002-3372-1619}     % ORCID Trixy Meyer
+\newcommand{\ORCIDKowerko}{0000-0002-4538-7814}   % ORCID Danny Kowerko
 
 
-% \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
-\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
-
+% Page numbering
 \usepackage{fancyhdr, lastpage}
 \pagestyle{fancy}
 \fancyhf{}
@@ -91,8 +116,12 @@
 \fancypagestyle{plain}{\fancyfoot[C]{\thepage/\pageref{LastPage}}}
 \fancyfoot[C]{\thepage/\pageref{LastPage}}
 
+
+% Miscellaneous
+
 \usepackage[subfigure]{tocloft}
 
+% "How to write a perfect equation parameters description?"
 % https://tex.stackexchange.com/questions/95838/how-to-write-a-perfect-equation-parameters-description
 \newenvironment{conditions}[1][where:]
 	{\hspace{0.02\textwidth} #1 \begin{tabular}[t]{>{$}l<{$} @{${}={}$} l}}
@@ -130,7 +159,7 @@
 \section*{Abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Motivated by the recent developments in machine learning (ML) and deep learning (DL) as well as a general need for big data analysis in object detection and classification as well as image generation by utilizing learning-based approaches and models such as deep neural networks (DNN), this manuscript aims at providing a consolidated overview of evaluation and performance metrics for machine learning and computer vision (CV). For this purpose, well-established evaluation metrics are presented, for which their (dis-)advantages as well as their origins are emphasized. Following, all to this manuscript related data, including our \LaTeX~source code, will be made publicly available and can be found under \url{https://github.com/TSchlosser13/Evaluation_Metrics}. As this manuscript is meant as a continuously consolidated overview, more evaluation metrics will be added over time.
+Within the rapidly evolving fields of machine learning (ML) and computer vision (CV), the selection and application of appropriate evaluation and performance metrics are paramount to the advancement and validation of innovative models. These metrics not only guide the development and fine-tuning of algorithms but also shape the interpretation of outcomes in diverse applications, ranging from automated disease diagnosis to autonomous driving. This manuscript is therefore also driven by the recent advancements in artificial intelligence (AI) and deep learning (DL) with a focus on big data analysis in areas such as object detection and classification by utilizing learning-based approaches including artificial neural networks (ANN) such as deep neural networks (DNN). For this purpose, we present well-established evaluation metrics, detailing their different advantages, disadvantages, and related origins. By consolidating current knowledge and offering insights into the effective use of these metrics, the goal of this work is to equip researchers and practitioners with the essential tools to critically evaluate and enhance the robustness and reliability of their models. Since this manuscript is designed to be a living resource, it will be systematically updated to incorporate novel evaluation metrics, ensuring its continued development.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -145,9 +174,43 @@ Motivated by the recent developments in machine learning (ML) and deep learning 
 
 \tableofcontents
 
+
+
+
 \clearpage
 
 
+
+
+\section{Introduction and Motivation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Within the recent years, the fields of machine learning (ML) and deep learning (DL) have witnessed remarkable growth fueled by advancements in algorithms, data availability, and computational power \cite{sejnowski2018deep, krizhevsky2012imagenet, szegedy2015going, bronstein2017geometric, liu2021survey, zaidi2022survey}. This evolution has led to significant improvements across a variety of applications including object detection and classification. Fundamental to these developments is the use of learning-based approaches such as deep neural networks (DNN), which are increasingly favored due to their powerful feature extraction and learning capabilities. However, the expansion of these technologies also presents new challenges, particularly in evaluating and optimizing performance under aspects of model interpretability, accountability, and robustness \cite{carvalho2019machine, zhou2021evaluating, cooper2022accountability}. The effectiveness of ML models in real-world scenarios depends on their ability to generalize from training data to unseen data, necessitating robust evaluation metrics that can accurately reflect model performance across diverse conditions and data sets.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{The need for comprehensive evaluation metrics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Evaluation metrics serve as fundamental tools that provide insights into the effectiveness of machine learning models, guiding the selection, tuning, and optimization of models in scientific research and commercial applications. In computer vision (CV), the complexity of tasks such as image segmentation, object recognition, and motion analysis further complicates the assessment of model performance. Traditional metrics such as accuracy or error rate are often insufficient to capture the nuances of model behavior, especially in data sets with imbalanced classes. Moreover, the dynamic nature of ML and CV, with continually evolving models and techniques, demands a standardized yet comprehensive set of metrics that can adapt to new challenges. This need highlights the importance of utilizing well-established metrics that can offer deeper insights and facilitate the effective comparison of state-of-the-art techniques \cite{ferri2009experimental}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Objectives of this manuscript}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This manuscript provides a comprehensive overview of evaluation and performance metrics suitable for ML and CV applications. It details established metrics, examining their strengths, weaknesses, and foundational concepts, thereby aiding in their appropriate selection and application. By consolidating an overview of traditional as well as novel metrics, this manuscript therefore serves as a comprehensive resource, supporting researchers and practitioners in accurately assessing and enhancing model performance.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\clearpage
+
+
+
+
+% "Table of equations like list of figures"
 % https://tex.stackexchange.com/questions/173102/table-of-equations-like-list-of-figures
 
 \newcommand{\listequationsname}{\Large List of Equations}
@@ -168,15 +231,23 @@ Motivated by the recent developments in machine learning (ML) and deep learning 
 \section{Machine Learning}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following evaluation metrics within the context of machine learning are motivated by the contributions of \cite{metz1978basic, fawcett2006introduction}.
+In the continuously evolving landscape of machine learning, the evaluation of predictive models through various metrics is integral to understanding their performance and guiding their optimization. Evaluation and performance metrics such as precision, recall, and accuracy provide foundational insights, while more nuanced metrics address specific aspects of model behavior and class imbalances.
 
-\vspace{1cm}
-\hrule
+For example, precision \cite{altman1994statistics, fletcher2019clinical}, also known as the positive predictive value, gauges the accuracy of positive predictions made by a model, indicating the proportion of true positive results in all positive classifications. This evaluation metric is vital in contexts where the cost of false positives is high, such as in medical diagnostics \cite{kononenko2001machine, ahsan2022machine} or fraud detection \cite{ashtiani2021intelligent, ali2022financial}. To accommodate the characteristics of diverse data sets, precision is often calculated in one of three forms: macro average \cite{yang1999evaluation, sebastiani2002machine, zhu2004recall, he2018local}, micro average \cite{yang1999evaluation, sebastiani2002machine}, or weighted average precision \cite{han2014rule}. Macro average precision treats all classes equally, averaging the precision calculated for each class, which prevents dominant classes from overshadowing smaller ones. Micro average precision aggregates the contributions of all classes to compute the overall precision, which is ideal for handling class imbalances. Weighted average precision, however, assigns a weight to each class's precision based on its representation in the data set, providing a balance between treating all classes equally and recognizing their different sizes.
+
+Recall \cite{yerushalmy1947statistical, altman1994diagnostic}, or the true positive rate, complements precision by measuring the ability to detect all actual positives. It is crucial for applications where missing a positive instance carries severe consequences, such as detecting rare diseases. Like precision, recall can also be categorized into macro \cite{yang1999evaluation, sebastiani2002machine, rosenberg2012classifying, yang2020edgernn}, micro \cite{yang1999evaluation, sebastiani2002machine}, and weighted averages \cite{gordon1988effect, han2014rule} to adapt to various needs and data set structures. Negative predictive value \cite{altman1994statistics, fletcher2019clinical} and true negative rate \cite{yerushalmy1947statistical, altman1994diagnostic} measure the accuracy of negative predictions and the ability to identify negatives, respectively, which may help in rounding out the model's ability to correctly predict both classes. Accuracy \cite{metz1978basic, taylor1997introduction} provides an overall measure of model performance but can be misleading in unbalanced data sets. Balanced accuracy \cite{brodersen2010balanced, kelleher2020fundamentals} and its variations, including weighted balanced accuracy \cite{salman2017detection, infante2023factors}, provide a more trustworthy assessment by considering both sensitivity (recall) and specificity (true negative rate) adjusted for prevalence \cite{rothman2012epidemiology, bruce2018quantitative}. The F-score \cite{van2004geometry, taha2015metrics}, including variations such as the F1-score \cite{van2004geometry, taha2015metrics} and the F2-score \cite{van2004geometry, taha2015metrics}, combines precision and recall in a harmonic mean, balancing the trade-off between them. It is especially useful when seeking a model that reliably balances false positives and false negatives. Error metrics including the false discovery rate \cite{benjamini1995controlling, benjamini2001control} and false omission rate \cite{zafar2017fairness} delve deeper into the types of errors a model may show, providing insights that can be critical for refining model performance. The false discovery rate, for example, focuses on the proportion of false positives among the positive results, which is particularly relevant in scientific testing where validation is costly.
+
+Further sophistication in evaluation metrics is seen in measures such as the diagnostic odds ratio \cite{glas2003diagnostic, doust2004systematic}, which compares the odds of positive test results, and the Fowlkes--Mallows index \cite{fowlkes1983method, halkidi2001clustering}, which measures the similarity between the predicted and true classifications. These metrics provide additional layers of understanding in scenarios where a simple accuracy is insufficient. Metrics including the positive likelihood ratio \cite{swets1973relative, deeks2004diagnostic} and the negative likelihood ratio \cite{swets1973relative, deeks2004diagnostic} provide evidence strength that a given condition or feature corresponds to a specific class, which is useful in diagnostic applications. The informedness or bookmaker informedness \cite{peirce1884numerical, youden1950index} provides, as opposed to random guessing, a measure of decision effectiveness.
+
+Collectively, these metrics offer a multidimensional framework. They not only assess basic performance but also provide insights into the behavior of models across different scenarios, fostering more informed and effective machine learning applications.
 
 
+The following evaluation metrics within the context of machine learning are motivated by the contributions of \textit{Metz} \cite{metz1978basic} and \textit{Fawcett} \cite{fawcett2006introduction}.
 
 
-\subsection*{General}
+\subsection{General}
+
+Figure~\ref{figure:ML_general} and Table~\ref{table:ML_general} give an overview of our general definitions for ML-related metrics.
 
 \begin{figure}[H]
 	\centering
@@ -201,7 +272,7 @@ The following evaluation metrics within the context of machine learning are moti
 		\node (FN) at (-2, 3)    {FN};
 	\end{tikzpicture}}
 
-	\caption{General definitions machine learning (reprinted from \cite[Figure 4.1]{Schlosser2023}).}
+	\caption{General definitions machine learning.}
 	\label{figure:ML_general}
 \end{figure}
 
@@ -229,25 +300,19 @@ The following evaluation metrics within the context of machine learning are moti
 	\label{table:ML_general}
 \end{table}
 
-\vspace{1cm}
-\hrule
-
-
-
-
-\clearpage
-
-
-
 
 \subsection[Precision~/ positive predictive value (PPV)]{Precision~/ positive predictive value (PPV) \cite{altman1994statistics, fletcher2019clinical}}
 
+Precision \cite{altman1994statistics, fletcher2019clinical} is an essential evaluation metric used to assess the accuracy of classification models, particularly focusing on the correctness of positive predictions. It measures the proportion of predicted positive instances that are truly positive, therefore providing critical insights into the model's performance in contexts where the cost of a false positive is significant, such as in spam detection or legal proceedings. By quantifying how many of the model's positive classifications are accurate, precision determines the reliability of the model's positive predictions. A high precision score indicates that the model is effective in minimizing false positives, thereby ensuring that most of its positive predictions are trustworthy. This metric is particularly valuable when the consequences of erroneous positive predictions are costly or disruptive. However, maximizing precision alone can sometimes lead to a model that is overly conservative in its positive predictions, potentially missing genuine positive cases (low recall). Therefore, in practice, precision is often considered alongside recall to optimize both the accuracy and coverage of the model's predictions, commonly evaluated through the F1-score, which harmonizes the trade-off between precision and recall to provide a more holistic view of model performance.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of true positives and false positives. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying true positives in relation to false positives. \\
-		\textcolor{Red}{$-$}   & Neglects true negatives and false negatives.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of true positives and false positives. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Minimizes false positives. \\
+		\textcolor{Green}{$+$} & Useful for critical false positive sensitive applications. \\
+		\textcolor{Red}{$-$}   & Ignores true negatives and false negatives. \\
+		\textcolor{Red}{$-$}   & May overlook recall for higher precision.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -257,19 +322,17 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Precision / positive predictive value (PPV)}
 
-\hrule
-
 
 \subsubsection[Macro average precision (APmacro)]{Macro average precision (AP\textsubscript{macro}) \cite{yang1999evaluation, sebastiani2002machine, zhu2004recall, he2018local}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Macro average precision calculates the average precision for each class separately and takes the average over all classes. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Each class is weighted equally regardless of its frequency in the data set, thus allowing each class to be evaluated individually. \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Macro average precision calculates the average precision for each class separately and takes the average over all classes. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Each class is weighted equally regardless of its frequency in the data set, therefore allowing each class to be evaluated individually. \\
 		\textcolor{Green}{$+$} & Advantageous when the recognition rate of TP compared to FP is of interest. \\
 		\textcolor{Red}{$-$}   & Rare classes have the same weight as frequent classes. This can lead to bias. \\
 		\textcolor{Red}{$-$}   & Only partially evaluates a model's classification capabilities.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -279,17 +342,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Macro average precision (AP\textsubscript{macro})}
 
-\hrule
-
 
 \subsubsection[Micro average precision (APmicro)]{Micro average precision (AP\textsubscript{micro}) \cite{yang1999evaluation, sebastiani2002machine}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Micro average precision calculates the precision across all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Micro average precision calculates the precision across all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Use with inconsistent data sets / class distributions. Provides overview of overall model performance. \\
 		\textcolor{Red}{$-$}   & Neglects infrequent classes and overestimates frequent classes.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -299,17 +360,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Micro average precision (AP\textsubscript{micro})}
 
-\hrule
-
 
 \subsubsection[Weighted average precision (APweighted)]{Weighted average precision (AP\textsubscript{weighted}) \cite{han2014rule}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Weighted average precision calculates the weighted precision across all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Weighted average precision calculates the weighted precision across all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Use with inconsistent data sets / class distributions. Provides overview of overall model performance. \\
 		\textcolor{Red}{$-$}   & Neglects under-weighted classes and overestimates over-weighted classes.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -323,17 +382,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Weighted average precision (AP\textsubscript{weighted})}
 
-\hrule
-
 
 \subsection[Negative predictive value (NPV)]{Negative predictive value (NPV) \cite{altman1994statistics, fletcher2019clinical}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of true negatives and false negatives. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of true negatives and false negatives. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying true negatives in relation to false negatives. \\
 		\textcolor{Red}{$-$}   & Neglects true positives and false positives.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -343,17 +400,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Negative predictive value (NPV)}
 
-\hrule
-
 
 \subsection[Recall~/ true positive rate (TPR)~/ sensitivity~/ hit rate]{Recall~/ true positive rate (TPR)~/ sensitivity~/ hit rate \cite{yerushalmy1947statistical, altman1994diagnostic}}
 
+Recall \cite{yerushalmy1947statistical, altman1994diagnostic} particularly emphasizes the model's ability to identify all relevant instances within a data set. Commonly used in contexts where the cost of missing a positive case (false negative) is high, such as in medical diagnostics or fraud detection, recall calculates the proportion of actual positives that have been correctly identified by the model. It serves as a critical measure by quantifying the model's sensitivity to detecting positive samples amidst a pool of negatives, thereby highlighting potential weaknesses in capturing all pertinent cases. A high recall score indicates that the model effectively captures the majority of positive cases, which is paramount in scenarios where failing to detect positives could have severe consequences. Consequently, optimizing for recall is essential in fine-tuning the performance of models deployed in high-stakes environments, ensuring that few positive cases go unnoticed. However, focusing solely on recall can sometimes lead to a decrease in precision, whereas the model might also increase the number of false positives. Therefore, recall is often balanced with other metrics such as precision to provide a more comprehensive understanding of a model's overall performance.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of true positives and false negatives. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying true positives in relation to false negatives. \\
-		\textcolor{Red}{$-$}   & Neglects true negatives and false positives.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of true positives and false negatives. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Ensures minimal false negatives. \\
+		\textcolor{Green}{$+$} & Critical for identifying rare positive cases. \\
+		\textcolor{Red}{$-$}   & Ignores true negatives and false positives. \\
+		\textcolor{Red}{$-$}   & May overlook precision for higher recall.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -363,19 +422,17 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Recall / true positive rate (TPR) / sensitivity / hit rate}
 
-\hrule
-
 
 \subsubsection[Macro average recall (ARmacro)]{Macro average recall (AR\textsubscript{macro}) \cite{yang1999evaluation, sebastiani2002machine, rosenberg2012classifying, yang2020edgernn}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Macro average recall calculates the average recall for each class separately and takes the average over all classes. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Each class is weighted equally regardless of its frequency in the data set, thus allowing each class to be evaluated individually. \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Macro average recall calculates the average recall for each class separately and takes the average over all classes. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Each class is weighted equally regardless of its frequency in the data set, therefore allowing each class to be evaluated individually. \\
 		\textcolor{Green}{$+$} & Advantageous when the recognition rate of TP compared to FN is of interest. \\
 		\textcolor{Red}{$-$}   & Rare classes have the same weight as frequent classes. This can lead to bias. \\
 		\textcolor{Red}{$-$}   & Only partially evaluates a model's classification capabilities.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -385,17 +442,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Macro average recall (AR\textsubscript{macro})}
 
-\hrule
-
 
 \subsubsection[Micro average recall (ARmicro)]{Micro average recall (AR\textsubscript{micro}) \cite{yang1999evaluation, sebastiani2002machine}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Micro average recall calculates the recall across all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Micro average recall calculates the recall across all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Use with inconsistent data sets / class distributions. Provides overview of overall model performance. \\
 		\textcolor{Red}{$-$}   & Neglects infrequent classes and overestimates frequent classes.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -405,17 +460,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Micro average recall (AR\textsubscript{micro})}
 
-\hrule
-
 
 \subsubsection[Weighted average recall (ARweighted)]{Weighted average recall (AR\textsubscript{weighted}) \cite{gordon1988effect, han2014rule}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Weighted average recall calculates the weighted recall across all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Weighted average recall calculates the weighted recall across all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Use with inconsistent data sets / class distributions. Provides overview of overall model performance. \\
 		\textcolor{Red}{$-$}   & Neglects under-weighted classes and overestimates over-weighted classes.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -429,17 +482,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Weighted average recall (AR\textsubscript{weighted})}
 
-\hrule
-
 
 \subsection[True negative rate (TNR)~/ specificity~/ selectivity]{True negative rate (TNR)~/ specificity~/ selectivity \cite{yerushalmy1947statistical, altman1994diagnostic}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of true negatives and false positives. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of true negatives and false positives. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying true negatives in relation to false positives. \\
 		\textcolor{Red}{$-$}   & Neglects true positives and false negatives.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -449,17 +500,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{True negative rate (TNR) / specificity / selectivity}
 
-\hrule
-
 
 \subsection[Prevalence]{Prevalence \cite{rothman2012epidemiology, bruce2018quantitative}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of positives with positives and negatives. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of positives with positives and negatives. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Straightforward to calculate. \\
 		\textcolor{Red}{$-$}   & Neglects TP, TN, FP, and FN.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -469,17 +518,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Prevalence}
 
-\hrule
-
 
 \subsection[Accuracy (A)]{Accuracy (A) \cite{metz1978basic, taylor1997introduction}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of correct classifications. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of correct classifications. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying true positives and true negatives. \\
 		\textcolor{Red}{$-$}   & Misleading for imbalanced data (see also balanced accuracy).
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -489,17 +536,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Accuracy (A)}
 
-\hrule
-
 
 \subsection[Balanced accuracy (BA)]{Balanced accuracy (BA) \cite{brodersen2010balanced, kelleher2020fundamentals}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Balanced fraction of correct classifications. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Balanced fraction of correct classifications. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Normalizes true positives and true negatives. \\
 		\textcolor{Red}{$-$}   & Neglects, e.g., FPR and FNR.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -516,17 +561,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Balanced accuracy (BA) for multi-class classification}
 
-\hrule
-
 
 \subsection[Balanced accuracy weighted (BAW)]{Balanced accuracy weighted (BAW) \cite{salman2017detection, infante2023factors}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Building upon the balanced accuracy approach, an additional class weighting is added. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Building upon the balanced accuracy approach, an additional class weighting is added. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Suitable for multi-class problems, robust against class imbalance. \\
 		\textcolor{Red}{$-$}   & More complex and rarely used metric.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -540,17 +583,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Balanced accuracy weighted (BAW)}
 
-\hrule
-
 
 \subsection[Average accuracy (AA)]{Average accuracy (AA) \cite{brodersen2010balanced, huang2019ecg}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Average accuracy over all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Average accuracy over all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Suitable for data sets that consist of balanced classes. \\
 		\textcolor{Red}{$-$}   & Can yield poor results when a biased classifier is tested on imbalanced data.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -560,17 +601,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Average accuracy (AA)}
 
-\hrule
-
 
 \subsection[Average class accuracy (ACA)]{Average class accuracy (ACA) \cite{bhowan2011developing, devarriya2020unbalanced}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates a weighted average classification accuracy based on a minority accuracy corresponding to TPR and a majority accuracy corresponding to TNR. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates a weighted average classification accuracy based on a minority accuracy corresponding to TPR and a majority accuracy corresponding to TNR. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Suitable when a significant class imbalance between minority and majority classes exists. \\
 		\textcolor{Red}{$-$}   & Difficult to choose a good weighting factor.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -584,17 +623,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Average class accuracy (ACA)}
 
-\hrule
-
 
 \subsection[Error rate (ER)]{Error rate (ER) \cite{hand1986recent, asri2016using}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Complementary metric to accuracy. All faulty classifications are divided by the total number of classifications. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Complementary metric to accuracy. All faulty classifications are divided by the total number of classifications. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Suitable for problems where the evaluation of error recognition is of importance. \\
 		\textcolor{Red}{$-$}   & Poor performance for imbalanced data.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -604,17 +641,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Error rate (ER)}
 
-\hrule
-
 
 \subsection[Average error rate (AER)]{Average error rate (AER) \cite{hamamoto1998gabor, han2016variable}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Average error rate over all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Average error rate over all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Suitable for problems where the evaluation of error recognition is of importance. \\
 		\textcolor{Red}{$-$}   & Poor performance for imbalanced data.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -624,17 +659,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Average error rate (AER)}
 
-\hrule
-
 
 \subsection[F-score~/ F\textbeta-score]{F-score~/ F\textbeta-score \cite{van2004geometry, taha2015metrics}}
 
+The F-score \cite{van2004geometry, taha2015metrics}, or F\textbeta-score, serves as a versatile evaluation metric in classification tasks, allowing for the weighted balancing of precision and recall according to specific application needs. It introduces the parameter \textbeta, which adjusts the emphasis placed on recall relative to precision. A \textbeta{} greater than one prioritizes recall, making it particularly useful in contexts where missing a positive instance carries severe repercussions, such as in medical diagnostics or fraud detection. Conversely, a \textbeta{} less than one shifts the focus towards precision, suitable for applications where false positives are more detrimental, such as in spam filtering. By calculating the weighted harmonic mean of precision and recall, the F\textbeta-score quantifies the trade-offs between both metrics, providing a nuanced view of model performance. High values of the F\textbeta-score indicate that the model not only performs well in terms of the chosen emphasis on precision or recall but also maintains a reasonable balance according to the specificities dictated by \textbeta, thereby ensuring model decisions align closely with the intended requirements.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Measures the user-defined classification effectiveness. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & The recall can be weighted $\beta$~times as important as the precision. \\
-		\textcolor{Red}{$-$}   & Finding the correct $\beta$~can be different from application to application.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Measures the user-defined classification effectiveness. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Balances precision and recall. \\
+		\textcolor{Green}{$+$} & Adjustable for precision or recall emphasis. \\
+		\textcolor{Red}{$-$}   & Harder to interpret than individual components. \\
+		\textcolor{Red}{$-$}   & Not sensitive to data distribution changes.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -644,17 +681,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{F-score / F\textbeta-score}
 
-\hrule
-
 
 \subsubsection[Macro average F-score]{Macro average F-score \cite{mohammad2013nrc, takahashi2022confidence}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Averaged F-score over all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Averaged F-score over all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Values all classes equally. \\
 		\textcolor{Red}{$-$}   & Valuing all classes equally can be detrimental in case of class imbalance.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -668,17 +703,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Macro average F-score}
 
-\hrule
-
 
 \subsubsection[Micro average F-score]{Micro average F-score \cite{goutte2005probabilistic, takahashi2022confidence}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Averaged F-score based on the micro average of precision and recall. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Averaged F-score based on the micro average of precision and recall. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Useful when the performance of larger classes is of importance. \\
 		\textcolor{Red}{$-$}   & Prone to issues with class imbalance.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -688,17 +721,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Micro average F-score}
 
-\hrule
-
 
 \subsubsection[Weighted average F-score]{Weighted average F-score \cite{al2016lili, alswaidan2020hybrid}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Weighted averaged F-score over all classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Weighted averaged F-score over all classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & More robust against class imbalance. \\
 		\textcolor{Red}{$-$}   & Not widely used within the literature.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -713,17 +744,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Weighted average F-score}
 
-\hrule
 
-
-\subsection[F0-score]{F0-score \cite{van2004geometry, taha2015metrics}}
+\subsubsection[F0-score]{F0-score \cite{van2004geometry, taha2015metrics}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The recall is weighted 0 times as important as the precision. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The recall is weighted 0 times as important as the precision. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & The importance of the recall is maximized. \\
 		\textcolor{Red}{$-$}   & The importance of the precision is minimized.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -733,17 +762,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{F0-score}
 
-\hrule
 
-
-\subsection[F0.5-score]{F0.5-score \cite{van2004geometry, taha2015metrics}}
+\subsubsection[F0.5-score]{F0.5-score \cite{van2004geometry, taha2015metrics}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The recall is weighted 0.5 times as important as the precision. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The recall is weighted 0.5 times as important as the precision. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & The importance of the recall is increased. \\
 		\textcolor{Red}{$-$}   & The importance of the precision is decreased.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -753,17 +780,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{F0.5-score}
 
-\hrule
 
-
-\subsection[F1-score]{F1-score \cite{van2004geometry, taha2015metrics}}
+\subsubsection[F1-score]{F1-score \cite{van2004geometry, taha2015metrics}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Measures the harmonic mean of the precision and the recall. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Measures the harmonic mean of the precision and the recall. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Equal importance of precision and recall. \\
 		\textcolor{Red}{$-$}   & Does not consider true negatives.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -773,17 +798,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{F1-score}
 
-\hrule
 
-
-\subsection[F2-score]{F2-score \cite{van2004geometry, taha2015metrics}}
+\subsubsection[F2-score]{F2-score \cite{van2004geometry, taha2015metrics}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The recall is weighted 2 times as important as the precision. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The recall is weighted 2 times as important as the precision. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & The importance of the recall is decreased. \\
 		\textcolor{Red}{$-$}   & The importance of the precision is increased.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -793,17 +816,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{F2-score}
 
-\hrule
-
 
 \subsection[False discovery rate (FDR)]{False discovery rate (FDR) \cite{benjamini1995controlling, benjamini2001control}}
 
+The false discovery rate (FDR) \cite{benjamini1995controlling, benjamini2001control} is an evaluation metric used predominantly in multiple hypothesis testing to measure the proportion of false positives among the rejected hypotheses. This is particularly crucial in fields such as genomics, where large numbers of simultaneous tests are conducted and distinguishing between truly significant results and those due to chance. FDR quantifies the expected proportion of erroneous rejections (false discoveries) in a set of claimed findings. This focus on controlling the rate of false positives means that FDR is particularly useful when the cost of a false positive is significant. A lower FDR value indicates a more reliable rejection of null hypotheses, implying that a higher proportion of identified significant results are likely to be truly significant. FDR provides a balance between discovery and error, which allows to maximize true discoveries while maintaining a controlled rate of false positives. This balance is especially important in exploratory research where the ability to detect genuine effects without being overwhelmed by spurious findings is crucial.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of false positives and true positives. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying false positives in relation to true positives. \\
-		\textcolor{Red}{$-$}   & Neglects true negatives and false negatives.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of false positives and true positives. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Focuses on proportion of false positives. \\
+		\textcolor{Green}{$+$} & Useful in multiple comparison scenarios. \\
+		\textcolor{Red}{$-$}   & Ignores true negatives and false negatives. \\
+		\textcolor{Red}{$-$}   & Sensitive to class imbalance.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -812,8 +837,6 @@ The following evaluation metrics within the context of machine learning are moti
 	\label{equation:FDR}
 \end{equation}
 \myequations{False discovery rate (FDR)}
-
-\hrule
 
 
 \subsubsection{Macro average FDR (FDRmacro)}
@@ -825,8 +848,6 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Macro average FDR (FDR\textsubscript{macro})}
 
-\hrule
-
 
 \subsubsection{Micro average FDR (FDRmicro)}
 
@@ -836,8 +857,6 @@ The following evaluation metrics within the context of machine learning are moti
 	\label{equation:MIAFDR}
 \end{equation}
 \myequations{Micro average FDR (FDR\textsubscript{micro})}
-
-\hrule
 
 
 \subsubsection{Weighted average FDR (FDRweighted)}
@@ -849,17 +868,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Weighted average FDR (FDR\textsubscript{weighted})}
 
-\hrule
-
 
 \subsection[False omission rate (FOR)]{False omission rate (FOR) \cite{zafar2017fairness}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of false negatives and true negatives. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of false negatives and true negatives. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying false negatives in relation to true negatives. \\
 		\textcolor{Red}{$-$}   & Neglects true positives and false positives.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -869,17 +886,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{False omission rate (FOR)}
 
-\hrule
-
 
 \subsection[False positive rate (FPR)]{False positive rate (FPR) \cite{banerjee2009hypothesis}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of false positives and true negatives. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of false positives and true negatives. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying false positives in relation to true negatives. \\
 		\textcolor{Red}{$-$}   & Neglects true positives and false negatives.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -889,17 +904,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{False positive rate (FPR)}
 
-\hrule
-
 
 \subsection[False negative rate (FNR)~/ miss rate]{False negative rate (FNR)~/ miss rate \cite{banerjee2009hypothesis}}
 
+The false negative rate (FNR) \cite{banerjee2009hypothesis}, which is an important metric in the field of statistical classification, measures the proportion of positive instances that a model incorrectly classifies as negative. This rate is critical in scenarios where the consequences of missing a positive detection are severe, such as in medical diagnosis or security surveillance systems \cite{sreenu2019intelligent, xue2020machine}. FNR is particularly valuable in contexts where ensuring the capture of all positive cases is paramount to prevent harmful outcomes. By quantifying the likelihood that true positives are overlooked by a model, the FNR provides essential insights into the sensitivity of a classification system. A high FNR indicates that a significant number of positive cases are being missed, potentially leading to hazardous oversights. Consequently, minimizing FNR is crucial in high-stakes environments where the cost of a false negative is high, such as failing to diagnose a serious illness or missing a security threat. It helps in tuning the thresholds of detection algorithms to better suit specific operational requirements, ensuring a more reliable performance in critical applications. Therefore, the FNR is integral to developing robust predictive models that effectively manage the risks associated with incorrect negative classifications.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of false negatives and true positives. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying false negatives in relation to true positives. \\
-		\textcolor{Red}{$-$}   & Neglects true negatives and false positives.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of false negatives and true positives. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Emphasizes identifying missed positive cases. \\
+		\textcolor{Green}{$+$} & Important for recall-focused assessments. \\
+		\textcolor{Red}{$-$}   & Ignores true negatives and false positives. \\
+		\textcolor{Red}{$-$}   & May lead to overemphasis on recall.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -908,8 +925,6 @@ The following evaluation metrics within the context of machine learning are moti
 	\label{equation:FNR}
 \end{equation}
 \myequations{False negative rate (FNR) / miss rate}
-
-\hrule
 
 
 \subsubsection{Macro average FNR (FNRmacro)}
@@ -921,8 +936,6 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Macro average FNR (FNR\textsubscript{macro})}
 
-\hrule
-
 
 \subsubsection{Micro average FNR (FNRmicro)}
 
@@ -933,8 +946,6 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Micro average FNR (FNR\textsubscript{micro})}
 
-\hrule
-
 
 \subsubsection{Weighted average FNR (FNRweighted)}
 \begin{equation}
@@ -944,17 +955,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Weighted average FNR (FNR\textsubscript{weighted})}
 
-\hrule
-
 
 \subsection[Positive likelihood ratio (LR+)]{Positive likelihood ratio (LR$+$) \cite{swets1973relative, deeks2004diagnostic}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{In medicine, LR$+$ describes the probability of, e.g., a positive result in a sick person (true positive) in relation to the probability of a positive result in a healthy person (false positive). (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{In medicine, LR$+$ describes the probability of, e.g., a positive result in a sick person (true positive) in relation to the probability of a positive result in a healthy person (false positive). (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of the TPR in relation to the FPR. \\
 		\textcolor{Red}{$-$}   & Neglects, e.g., TNR and FNR (see also diagnostic odds ratio).
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -964,17 +973,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Positive likelihood ratio (LR$+$)}
 
-\hrule
-
 
 \subsection[Negative likelihood ratio (LR-)]{Negative likelihood ratio (LR$-$) \cite{swets1973relative, deeks2004diagnostic}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{In medicine, LR$-$ describes the probability of, e.g., a negative result in a sick person (false negative) in relation to the probability of a negative result in a healthy person (true negative). (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{In medicine, LR$-$ describes the probability of, e.g., a negative result in a sick person (false negative) in relation to the probability of a negative result in a healthy person (true negative). (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of the FNR in relation to the TNR. \\
 		\textcolor{Red}{$-$}   & Neglects, e.g., TPR and FPR (see also diagnostic odds ratio).
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -984,18 +991,17 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Negative likelihood ratio (LR$-$)}
 
-\hrule
-
 
 \subsection[Diagnostic odds ratio (DOR)]{Diagnostic odds ratio (DOR) \cite{glas2003diagnostic, doust2004systematic}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{In medicine, DOR measures the classification effectiveness of a diagnostic test. \cite{glas2003diagnostic} (range: $[0, \infty)$)} \\
-		\textcolor{Green}{$+$} & Emphasizes the accuracy of the LR$+$ in relation to the LR$-$. \\
-		\textcolor{Green}{$+$} & Independent of the prevalence. \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{In medicine, DOR measures the classification effectiveness of a diagnostic test. \cite{glas2003diagnostic} (range: $[0, \infty)$)} \\
+		\textcolor{Green}{$+$} & Balances sensitivity and specificity. \\
+		\textcolor{Green}{$+$} & Independent of disease prevalence. \\
+		\textcolor{Red}{$-$}   & Requires true positive, true negative, false positive, false negative counts. \\
 		\textcolor{Red}{$-$}   & Increased calculation and interpretation complexity.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1005,18 +1011,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Diagnostic odds ratio (DOR)}
 
-\hrule
-
 
 \subsection[Fowlkes--Mallows index (FM)]{Fowlkes--Mallows index (FM) \cite{fowlkes1983method, halkidi2001clustering}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Measures the geometric mean of the precision and the recall. In clustering, FM measures the similarity of two clusters. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Measures the geometric mean of the precision and the recall. In clustering, FM measures the similarity of two clusters. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Increased robustness to noise. \\
-		\textcolor{Red}{$-$}   & F1-score geometric mean equivalent (no weighting factor $\beta$~provided). \\
 		\textcolor{Red}{$-$}   & Less well known and used.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1026,17 +1029,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Fowlkes--Mallows index (FM)}
 
-\hrule
-
 
 \subsection[Informedness~/ bookmaker informedness (BM)~/ Youden's J statistic~/ Youden's index]{Informedness~/ bookmaker informedness (BM)~/ Youden's J statistic~/ Youden's index \cite{peirce1884numerical, youden1950index}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Quantifies the probability of an >>informed decision<<. (range: $[-1, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Quantifies the probability of an ``informed decision''. (range: $[-1, 1]$)} \\
 		\textcolor{Green}{$+$} & Takes all predictions into account. \\
 		\textcolor{Red}{$-$}   & Its result ranges from $-1$ to $1$.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1046,17 +1047,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Informedness / bookmaker informedness (BM) / Youden's J statistic / Youden's index}
 
-\hrule
-
 
 \subsection[Markedness (MK)]{Markedness (MK) \cite{powers2020evaluation}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Quantifies the >>markedness<<, i.e., the state of being irregular or uncommon. (range: $[-1, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Quantifies the ``markedness'', i.e., the state of being irregular or uncommon. (range: $[-1, 1]$)} \\
 		\textcolor{Green}{$+$} & Takes all predictions into account. \\
 		\textcolor{Red}{$-$}   & Its result ranges from $-1$ to $1$.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1066,17 +1065,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Markedness (MK)}
 
-\hrule
-
 
 \subsection[Matthews correlation coefficient (MCC)~/ phi coefficient~/ Yule phi coefficient]{Matthews correlation coefficient (MCC)~/ phi coefficient~/ Yule phi coefficient \cite{yule1912methods, matthews1975comparison, cramer1999mathematical}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{A balanced measure of TPR, TNR, PPV, and NPV. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{A balanced measure of TPR, TNR, PPV, and NPV. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Takes all predictions into account. \\
 		\textcolor{Red}{$-$}   & Increased calculation and interpretation complexity.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1086,17 +1083,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Matthews correlation coefficient (MCC) / phi coefficient / Yule phi coefficient}
 
-\hrule
-
 
 \subsection[Jaccard index (JI)~/ threat score (TS)~/ critical success index (CSI)]{Jaccard index (JI)~/ threat score (TS)~/ critical success index (CSI) \cite{jaccard1912distribution, murphy1996finley}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Fraction of TP with TP, FN, and FP. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Fraction of TP with TP, FN, and FP. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the accuracy of classifying TP in relation to FN and FP. \\
 		\textcolor{Red}{$-$}   & Neglects TN.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1106,18 +1101,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Jaccard index (JI) / threat score (TS) / critical success index (CSI)}
 
-\hrule
-
 
 \subsection[Receiver operating characteristic curve (ROC curve) and area under the curve (AUC)]{Receiver operating characteristic curve (ROC curve) and area under the curve (AUC) \cite{green1966signal, zweig1993receiver, fawcett2006introduction}}
 
+The receiver operating characteristic curve (ROC curve) and its associated metric \cite{green1966signal, zweig1993receiver, fawcett2006introduction}, the area under the curve (AUC), are pivotal evaluation tools used in the analysis of classification models \cite{bradley1997use, mandrekar2010receiver, jimenez2012insights}. The ROC curve is a graphical representation that plots the true positive rate (sensitivity) against the false positive rate (specificity) at various threshold settings, providing a comprehensive view of a model's ability across a spectrum of conditions. The AUC, a scalar value derived from the area under the ROC curve, quantifies the overall ability of the model to discriminate between classes irrespective of any specific threshold. A higher AUC value indicates better model performance, with a value of 1.0 representing perfect discrimination and 0.5 denoting no discriminative ability (equivalent to random guessing). These metrics are particularly valuable in environments where distinguishing between classes is crucial and the costs of different types of classification errors vary significantly. By evaluating the trade-offs between sensitivity and specificity without committing to a specific classification threshold, ROC and AUC facilitate an objective comparison of model performance when robust and reliable predictions are of central importance.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the area under the so-called receiver operating characteristic curve by adjusting the confidence threshold for, e.g., classification, detection, or segmentation. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Multiple results allow for a more meaningful evaluation. \\
-		\textcolor{Red}{$-$}   & Dependent on TPR and FPR. \\
-		\textcolor{Red}{$-$}   & Increased calculation complexity.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the area under the so-called receiver operating characteristic curve by adjusting the confidence threshold for, e.g., classification, detection, or segmentation. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Evaluates model performance across various decision thresholds. \\
+		\textcolor{Green}{$+$} & Suitable for imbalanced data sets. \\
+		\textcolor{Red}{$-$}   & Insensitive to class distribution changes. \\
+		\textcolor{Red}{$-$}   & Does not directly address practical performance thresholds.
+	\end{tabularx}
 \end{table}
 
 \begin{figure}[H]
@@ -1133,7 +1129,7 @@ The following evaluation metrics within the context of machine learning are moti
 			\addplot[name path=f, domain=0:1, samples=512, smooth, LimeGreen] {1 - (x - 1)^2};
 			\path[name path=axis] (0, 0) -- (1, 0);
 			\addplot[LimeGreen!50] fill between[of=f and axis];
-			\legend{x, Exemplary ROC curve, AUC}
+			\legend{$x$, Exemplary ROC curve, AUC}
 		\end{axis}
 	\end{tikzpicture}
 
@@ -1148,19 +1144,39 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Area under the curve (AUC)}
 
-\hrule
-
 
 \subsection[Average precision (AP)]{Average precision (AP) \cite{manning2009introduction, everingham2010pascal}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the area under the precision-recall curve by adjusting the confidence threshold for, e.g., classification, detection, or segmentation. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Multiple results allow for a more meaningful evaluation. \\
-		\textcolor{Red}{$-$}   & Dependent on precision and recall. \\
-		\textcolor{Red}{$-$}   & Increased calculation complexity.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the area under the precision-recall curve by adjusting the confidence threshold for, e.g., classification, detection, or segmentation \cite{ozenne2015precision, sofaer2019area, cook2020consult}. (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Evaluates model performance across various decision thresholds. \\
+		\textcolor{Green}{$+$} & Suitable for imbalanced data sets. \\
+		\textcolor{Red}{$-$}   & Insensitive to class distribution changes. \\
+		\textcolor{Red}{$-$}   & Does not directly address practical performance thresholds.
+	\end{tabularx}
 \end{table}
+
+\begin{figure}[H]
+	\centering
+
+	\begin{tikzpicture}
+		\begin{axis}[
+		 width=0.5\textwidth, height=0.5\textwidth,
+		 xlabel={Recall / true positive rate (TPR) / sensitivity}, ylabel={Precision / positive predictive value (PPV)},
+		 ticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=1},
+		 legend columns=-1, legend style={at={(0.5, 1.25)}, anchor=north, column sep=1ex}]
+			\addplot[domain=0:1, dashed] {-x + 1};
+			\addplot[name path=f, domain=0:1, samples=512, smooth, LimeGreen] {1 - x^2};
+			\path[name path=axis] (0, 0) -- (1, 0);
+			\addplot[LimeGreen!50] fill between[of=f and axis];
+			\legend{$-x + 1$, Exemplary precision-recall curve, AUC}
+		\end{axis}
+	\end{tikzpicture}
+
+	\caption{Precision-recall curve and area under the curve (AUC).}
+	\label{figure:PRC_AUC}
+\end{figure}
 
 \begin{equation}
 	\textit{AP} = \int_{x = 0}^1 \textit{Precision}(\textit{Recall}^{\,-1}(x)) \,dx = \dfrac{1}{n} \cdot \sum\nolimits_{i = 1}^n \textit{Precision}(\textit{Recall}_i)
@@ -1169,17 +1185,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Average precision (AP)}
 
-\hrule
-
 
 \subsection[Mean average precision (mAP)]{Mean average precision (mAP) \cite{manning2009introduction, everingham2010pascal}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Averages the area under the precision-recall curve over multiple classes. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Averages the area under the precision-recall curve over multiple classes. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Allows for an even more meaningful evaluation over multiple classes. \\
 		\textcolor{Red}{$-$}   & Increased calculation complexity.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1189,17 +1203,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean average precision (mAP)}
 
-\hrule
-
 
 \subsection[Cohen's kappa for binary classification]{Cohen's kappa for binary classification \cite{cohen1960coefficient, ranganathan2017common, chicco2021matthews}}
 
+Cohen's kappa is a metric for evaluating inter-rater reliability. It is applicable to both binary and categorical data by providing a quantitative measure. It is especially useful for the training of raters and adjustments in methodologies, particularly in complex settings with multiple raters. Yet, the main argument against Kappa centers on the problematic interpretations it can foster. Critics highlight that Kappa can be misleading due to its dependence on the prevalence of the attribute being measured and the possible bias of the raters. For instance, even when multiple different raters are in substantial agreement, kappa scores can be unexpectedly low if the prevalence of a certain categorization is particularly high or low. This has led to concerns that kappa may not always provide a robust or accurate measure of agreement. Hence, it could be misleading when forming a decisions based on its result. \cite{pontius2011death, olofsson2014good, foody2020explaining}
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Ranges from $-1$ for a fully wrong prediction to $+1$ for a completely correct prediction. (range: $[-1, 1]$)} \\
-		\textcolor{Green}{$+$} & Robust against class imbalance. \\
-		\textcolor{Red}{$-$}   & More difficult to interpret than other metrics.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Ranges from $-1$ for a fully wrong prediction to $+1$ for a completely correct prediction. (range: $[-1, 1]$)} \\
+		\textcolor{Green}{$+$} & Accounts for chance agreement. \\
+		\textcolor{Green}{$+$} & Useful for inter-rater agreement assessment. \\
+		\textcolor{Red}{$-$}   & Sensitivity to class imbalance. \\
+		\textcolor{Red}{$-$}   & Interpretation complexity with multiple raters.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1214,21 +1230,19 @@ The following evaluation metrics within the context of machine learning are moti
 \begin{conditions}
 	\kappa & Cohen's kappa \\
 	P_e    & expected accuracy \\
-	P_o    & model accuracy
+	P_o    & observed accuracy
 \end{conditions}
 \myequations{Cohen's kappa for binary classification}
-
-\hrule
 
 
 \subsection[Gini impurity]{Gini impurity \cite{gini1912variabilita, breiman1984classification, manek2017aspect}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The Gini impurity indicates the probability that two randomly selected samples from a data set have different original label types. A lower value indicates a higher purity of the data set. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The Gini impurity indicates the probability that two randomly selected samples from a data set have different original label types. A lower value indicates a higher purity of the data set. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Well-suited for application in decision tree algorithms. \\
 		\textcolor{Red}{$-$}   & Favors binary decisions, which can result in decision trees of reduced complexity.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1243,39 +1257,35 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Gini impurity}
 
-\hrule
-
 
 \subsection[P4 metric]{P\textsubscript{4} metric \cite{sitarz2023extending}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The P\textsubscript{4} metric covers four probabilities, precision, recall, specificity, and NPV, at once, forming their harmonic mean. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The P\textsubscript{4} metric covers four probabilities, precision, recall, specificity, and NPV, at once, forming their harmonic mean. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Tends to zero when any of the four conditional probabilities tends to zero. Tends to one when all four conditional probabilities tend to one. \\
 		\textcolor{Green}{$+$} & It is symmetrical with respect to data set labels swapping. \\
 		\textcolor{Red}{$-$}   & Does not take weighting. \\
 		\textcolor{Red}{$-$}   & Currently barely used metric.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
-	P_4 = \dfrac{4}{\frac{1}{\textit{Precision}} + \frac{1}{\textit{Recall}} + \frac{1}{\textit{Specificity}} + \frac{1}{\textit{NPV}}} = \dfrac{4 \cdot \textit{TP} \cdot \textit{TN}}{4 \cdot \textit{TP} \cdot \textit{TN} + (\textit{TP} + \textit{TN}) \cdot (\textit{FP} + \textit{FN})}
+	P_4 = \dfrac{4}{\cfrac{1}{\textit{Precision}} + \cfrac{1}{\textit{Recall}} + \cfrac{1}{\textit{Specificity}} + \cfrac{1}{\textit{NPV}}} = \dfrac{4 \cdot \textit{TP} \cdot \textit{TN}}{4 \cdot \textit{TP} \cdot \textit{TN} + (\textit{TP} + \textit{TN}) \cdot (\textit{FP} + \textit{FN})}
 %
 	\label{equation:P4_metric}
 \end{equation}
 \myequations{P\textsubscript{4} metric}
 
-\hrule
-
 
 \subsection[Skill score (SS)]{Skill score (SS) \cite{murphy1988skill}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Measures the quality of a prediction against a reference. (range: $(-\infty, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Measures the quality of a prediction against a reference. (range: $(-\infty, 1]$)} \\
 		\textcolor{Green}{$+$} & Intuitive way to rank model performance. \\
 		\textcolor{Red}{$-$}   & Scales indefinitely into the negative for larger variations.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1290,17 +1300,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Skill score (SS)}
 
-\hrule
-
 
 \subsection[Relative improvement factor]{Relative improvement factor \cite{schlosser2022improving}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Measures the relative quality of a prediction against a reference. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Measures the relative quality of a prediction against a reference. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Intuitive way to rank model performance. \\
 		\textcolor{Red}{$-$}   & Scales indefinitely into the positive for larger variations.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1315,16 +1323,18 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Relative improvement factor}
 
-\hrule
+
+
+
+\clearpage
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Examples %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\subsection*{Examples}
+\subsection{Examples}
 
-Figure~\ref{figure:ML_example1} shows an example result for a classification problem with 3 imbalanced classes, while Fig.~\ref{figure:ML_example2} illustrates an example result for a classification problem with 3 balanced classes created from the Iris flower data set of R. A. Fisher \cite{fisher1936use}. Both examples show an exemplary confusion matrix on the top left together with the number of samples per class. The metrics recall and false negative rate (FNR) with their equations and example calculations are aligned to the rows while precision and false discovery rate (FDR) and their respective equations and calculations are aligned with the columns of the confusion matrix. Accuracy as well as micro, macro, and weighted precision, recall, and F1-scores are shown on the bottom right. Note that micro and macro average recall, precision, and F1-score remain constant for the balanced dataset while this is not the case for the imbalanced dataset. Since the examples discuss 3-class problems, we set $n = 3$ in the equations for, e.g., macro average precision, recall, and F1-score (Eq.~\ref{equation:MAAP}, \ref{equation:MAAR}, and \ref{equation:MAAF}, respectively).
+Figure~\ref{figure:ML_example1} shows an example result for a classification problem with 3 imbalanced classes, while Fig.~\ref{figure:ML_example2} illustrates an example result for a classification problem with 3 balanced classes created from the Iris flower data set of \textit{Fisher} \cite{fisher1936use}. Both examples show an exemplary confusion matrix on the top left together with the number of samples per class. The metrics recall and false negative rate (FNR) with their equations and example calculations are aligned to the rows, whereas precision and false discovery rate (FDR) and their respective equations and calculations are aligned with the columns of the confusion matrix. Accuracy as well as micro, macro, and weighted precision, recall, and F1-scores are shown on the bottom right. Note that micro and macro average recall, precision, and F1-score remain constant for the balanced data set. This is not the case for the imbalanced data set. Since the examples discuss 3-class problems, we set $n = 3$ in the equations for, e.g., macro average precision, recall, and F1-score (Eq.~\ref{equation:MAAP}, \ref{equation:MAAR}, and \ref{equation:MAAF}, respectively).
 
 
 \begin{figure}[H]
@@ -1371,7 +1381,7 @@ Figure~\ref{figure:ML_example1} shows an example result for a classification pro
 
 			\node at (6, 0.5) {
 				\renewcommand*{\arraystretch}{3}\begin{tabular}{cccc}
-					{Eq.~\{\ref{equation:recall}\}} & $\dfrac{\textit{TP}}{\textit{TP} + \textit{FN}}$ &  {Eq.~\{\ref{equation:FNR}\}} & $\dfrac{\textit{FN}}{\textit{FN} + \textit{TP}}$ \\
+					{Eq.~\{\ref{equation:recall}\}} & $\dfrac{\textit{TP}}{\textit{TP} + \textit{FN}}$ & {Eq.~\{\ref{equation:FNR}\}} & $\dfrac{\textit{FN}}{\textit{FN} + \textit{TP}}$ \\
 					\hline
 					$\textit{Recall}_1$ & $\dfrac{41}{41 + 11 + 12}$ & $\textit{FNR}_1$ & $\dfrac{11 + 12}{11 + 12 + 41}$ \\
 					\hline
@@ -1572,9 +1582,13 @@ Figure~\ref{figure:ML_example1} shows an example result for a classification pro
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Functions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\subsection*{Functions}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Functions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Functions}
 
 The following table gives an overview of machine learning metrics commonly used with the Python programming language machine learning libraries scikit-learn\footnote{scikit-learn project page, \url{https://scikit-learn.org/stable/}}, TensorFlow\footnote{TensorFlow project page, \url{https://www.tensorflow.org/}} (and Keras\footnote{Keras project page, \url{https://keras.io/}}), and PyTorch\footnote{PyTorch project page, \url{https://pytorch.org/}}\textsuperscript{,}\footnote{TorchMetrics project page, \url{https://torchmetrics.readthedocs.io/en/stable/}}.
 
@@ -1820,15 +1834,23 @@ The following table gives an overview of machine learning metrics commonly used 
 \section{Computer Vision}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following evaluation metrics within the context of machine learning are motivated by the contributions of \cite{wang2003multiscale, hore2010image}.
+In the realm of computer vision, the evaluation of algorithms through various error and similarity metrics is essential for ensuring the reliability and accuracy of models applied in areas such as image processing, object recognition, and scene understanding. These metrics serve as fundamental tools for quantifying the performance of vision systems across a range of real-world tasks.
 
-\vspace{1cm}
-\hrule
+The core of these evaluations begins with the concept of error measurement. The error, abbreviated as E, provides a basic indication of the deviation of predicted values from the ground truth. Based on E, the absolute error (AE) \cite{richardson2004h} quantifies the absolute difference between each predicted and actual value. By aggregating these errors, a sense of overall error magnitude without accounting for the direction of errors can be obtained. This metric is particularly useful in applications where errors of different orientations, or signs, are equally detrimental. Complementing AE, the relative absolute error (RAE) \cite{armstrong1992error, armstrong2000another, rodrigues2017machine} normalizes the absolute error by the magnitude of the true value, providing a scale-independent measure. The mean error (ME) \cite{fisher1920012, anjali2019temperature} and the mean absolute error (MAE) \cite{willmott2005advantages, hyndman2006another} extend these concepts by averaging errors across all predictions, with MAE providing a robust measure against outliers by using the absolute values of errors. For a percentage-based perspective, the mean percentage error (MPE) \cite{pearson1895x, jiang2008prediction} and the mean absolute percentage error (MAPE) \cite{armstrong1992error, hyndman2006another} express errors as a percentage of the actual values, which is valuable for comparing performance across data sets of varying scales. The mean absolute scaled error (MASE) \cite{hyndman2006another, mohan2018deep} offers an advanced normalization by scaling MAE against the in-sample MAE. It is especially suitable for time-series predictions in vision tasks involving motion or tracking.
+
+Expanding on squared errors, the squared error (SE) \cite{draper1998applied} and the mean squared error (MSE) \cite{bickel2015mathematical} provide a measure where larger errors are exponentially penalized, making these metrics sensitive to outliers but valuable in applications where large errors are particularly undesirable. Following MSE, the root mean square error (RMSE) \cite{willmott2005advantages, hyndman2006another, pontius2008components} brings these scales back to the original units of measurement, while the normalized root mean square error (NRMSE) \cite{chang2004air, kim2005missing} offers a relative measure by normalizing RMSE against the range of observed data, potentially enhancing comparability across different scales and data sets. The root mean squared logarithmic error (RMSLE) \cite{nafees2021predictive} addresses scenarios where proportional differences are more significant than absolute differences. Therefore, it is more frequently used in depth and logarithmic scale predictions. In terms of assessing the quality of visual outputs, the peak signal-to-noise ratio (PSNR) \cite{salomon2004data, huynh2008scope} is pivotal in image processing, especially in lossy compression, by comparing the level of desired signals to the background noise. Likewise, the structural similarity (SSIM) \cite{wang2004image, ghodrati2019mr} and its counterpart, the structural dissimilarity (DSSIM) \cite{wang2004image, ghodrati2019mr}, evaluate the visual impact of changes to, e.g., luminance, contrast, and structure, providing a comprehensive measure of image quality degradation due to compression or other distortions.
+
+In tasks including image segmentation, metrics such as the intersection over union (IoU) \cite{jaccard1912distribution, murphy1996finley, rezatofighi2019generalized, zou2023object}, the Dice coefficient (DC) \cite{dice1945measures, sorenson1948method}, and the overlap coefficient (OC) \cite{szymkiewicz1934conlribution, sempson1947holarctic, bell1962mutual, goodall1978sample} are indispensable. They assess the overlap between predicted and ground truth segments, which is crucial for evaluating the accuracy of boundary detection algorithms within domains such as medical imaging \cite{suzuki2017overview, esteva2021deep}, video surveillance \cite{buch2011review, brunetti2018computer}, and autonomous driving systems \cite{feng2021review, zablocki2022explainability}.
+
+Together, these metrics provide a robust framework for diagnosing and enhancing the performance of computer vision systems, ensuring their efficiency and reliability in both controlled and erratic environments.
 
 
+The following evaluation metrics within the context of machine learning are motivated by the contributions of \textit{Wang et al.} \cite{wang2003multiscale} and \textit{Hore and Ziou} \cite{hore2010image}.
 
 
-\subsection*{General}
+\subsection{General}
+
+Table~\ref{table:CV_general} gives an overview of our general definitions for CV-related metrics.
 
 \begin{table}[H]
 	\centering
@@ -1849,24 +1871,15 @@ The following evaluation metrics within the context of machine learning are moti
 	\label{table:CV_general}
 \end{table}
 
-\vspace{1cm}
-\hrule
-
-
-
-
-\clearpage
-
-
-
 
 \subsection{Error (E)}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The amount by which a prediction differs from the ground truth. (range: $(-\infty, \infty)$)} \\
-		\textcolor{Green}{$+$} & Intuitive and straightforward to apply.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The amount by which a prediction differs from the ground truth. (range: $(-\infty, \infty)$)} \\
+		\textcolor{Green}{$+$} & Intuitive and straightforward to apply and interpret. \\
+		\textcolor{Red}{$-$}   & Does not distinguish between types of errors.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1876,18 +1889,17 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Error (E)}
 
-\hrule
-
 
 \subsection[Absolute error~/ sum of absolute errors (AE)]{Absolute error~/ sum of absolute errors (AE) \cite{richardson2004h}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the sum (total) of all absolute errors. (range: $[0, \infty)$)} \\
-		\textcolor{Green}{$+$} & Straightforward to calculate. \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the sum (total) of all absolute errors. (range: $[0, \infty)$)} \\
+		\textcolor{Green}{$+$} & Intuitive and straightforward to apply and interpret. \\
+		\textcolor{Green}{$+$} & Accounts for absolute magnitude of errors. \\
 		\textcolor{Red}{$-$}   & No differentiation depending on the number of compared values is made. \\
 		\textcolor{Red}{$-$}   & Large individual differences equal to many small ones (distribution problem).
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1897,17 +1909,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Absolute error / sum of absolute errors (AE)}
 
-\hrule
-
 
 \subsection[Relative absolute error (RAE)]{Relative absolute error (RAE) \cite{armstrong1992error, armstrong2000another, rodrigues2017machine}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Normalization of the absolute error by dividing the total absolute error of the simple predictor. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Normalization of the absolute error by dividing the total absolute error of the simple predictor. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Comparison of models that differ significantly. \\
 		\textcolor{Red}{$-$}   & Not sensitive to outliers and scaling.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1924,17 +1934,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Relative absolute error (RAE)}
 
-\hrule
-
 
 \subsection[Mean error (ME)]{Mean error (ME) \cite{fisher1920012, anjali2019temperature}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The average over all error measurements. (range: $(-\infty, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The average over all error measurements. (range: $(-\infty, \infty)$)} \\
 		\textcolor{Green}{$+$} & Intuitive and straightforward to apply. \\
 		\textcolor{Red}{$-$}   & Positive and negative error values can cancel each other out.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1944,17 +1952,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean error (ME)}
 
-\hrule
-
 
 \subsection[Mean percentage error (MPE)]{Mean percentage error (MPE) \cite{pearson1895x, jiang2008prediction}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The average over all error measurements in percentage. (range: $(-\infty\%, \infty\%)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The average over all error measurements in percentage. (range: $(-\infty\%, \infty\%)$)} \\
 		\textcolor{Green}{$+$} & Intuitive overview of the underlying situation. \\
 		\textcolor{Red}{$-$}   & Undefined as soon as a single ground truth value is zero.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1964,17 +1970,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean percentage error (MPE)}
 
-\hrule
-
 
 \subsection[Mean absolute error (MAE)]{Mean absolute error (MAE) \cite{willmott2005advantages, hyndman2006another}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the mean of the sum (total) of all absolute errors. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the mean of the sum (total) of all absolute errors. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Partially solves the distribution problem. \\
 		\textcolor{Red}{$-$}   & No differentiation depending on the maximum assumable error is made.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -1984,17 +1988,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean absolute error (MAE)}
 
-\hrule
-
 
 \subsection[Mean absolute percentage error (MAPE)]{Mean absolute percentage error (MAPE) \cite{armstrong1992error, hyndman2006another}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{The average over all absolute error measurements in percentage. (range: $[0\%, \infty\%)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{The average over all absolute error measurements in percentage. (range: $[0\%, \infty\%)$)} \\
 		\textcolor{Green}{$+$} & Intuitive and scale independent. \\
 		\textcolor{Red}{$-$}   & Undefined as soon as a single ground truth value is zero.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2004,17 +2006,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean absolute percentage error (MAPE)}
 
-\hrule
-
 
 \subsection[Mean absolute scaled error (MASE)]{Mean absolute scaled error (MASE) \cite{hyndman2006another, mohan2018deep}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Mean absolute error of the measurements scaled by the mean absolute error of the ground truth. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Mean absolute error of the measurements scaled by the mean absolute error of the ground truth. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Scale invariant. \\
 		\textcolor{Red}{$-$}   & Less sensitive to outliers.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2024,17 +2024,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean absolute scaled error (MASE)}
 
-\hrule
-
 
 \subsection[Mean normalized bias (MNB)]{Mean normalized bias (MNB) \cite{yu2006new, tsigaridis2014aerocom}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the variance between the predicted values and the ground truth values. Divides by the reference variable, subsequently calculating the mean. (range: $(-\infty, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the variance between the predicted values and the ground truth values. Divides by the reference variable, subsequently calculating the mean. (range: $(-\infty, \infty)$)} \\
 		\textcolor{Green}{$+$} & Enables the specific evaluation of systematic errors across the entire model. \\
 		\textcolor{Red}{$-$}   & Does not detect specific errors in individual parts of the model.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2044,17 +2042,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean normalized bias (MNB)}
 
-\hrule
-
 
 \subsection[Normalized mean bias (NMB)]{Normalized mean bias (NMB) \cite{mebust2003models, yu2006new}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the average of the variances between the prediction and the reference variable, subsequently normalizing it by the reference variable. (range: $(-\infty, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the average of the variances between the prediction and the reference variable, subsequently normalizing it by the reference variable. (range: $(-\infty, \infty)$)} \\
 		\textcolor{Green}{$+$} & Comparison of models independently of scaling. \\
 		\textcolor{Red}{$-$}   & Sensitive to outliers.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2064,18 +2060,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Normalized mean bias (NMB)}
 
-\hrule
-
 
 \subsection[Squared error~/ sum of squared errors (SE)]{Squared error~/ sum of squared errors (SE) \cite{draper1998applied}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the sum (total) of all squared errors. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the sum (total) of all squared errors. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Emphasizes the contribution of large errors. \\
-		\textcolor{Red}{$-$}   & No differentiation depending on the number of compared values is made. \\
-		\textcolor{Red}{$-$}   & Large individual differences equal to many small ones (distribution problem).
-	\end{tabular}
+		\textcolor{Red}{$-$}   & No differentiation depending on the number of compared values is made.
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2085,17 +2078,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Squared error / sum of squared errors (SE)}
 
-\hrule
-
 
 \subsection[Mean square error (MSE)]{Mean square error (MSE) \cite{bickel2015mathematical}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the mean of the sum (total) of all squared errors. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the mean of the sum (total) of all squared errors. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Partially solves the distribution problem. \\
 		\textcolor{Red}{$-$}   & No differentiation depending on the maximum assumable error is made.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2105,17 +2096,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Mean square error (MSE)}
 
-\hrule
-
 
 \subsection[Root mean square error (RMSE)]{Root mean square error (RMSE) \cite{willmott2005advantages, hyndman2006another, pontius2008components}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the root of the mean of the sum (total) of all squared errors. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the root of the mean of the sum (total) of all squared errors. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Provides a result in the range of the compared values. \\
 		\textcolor{Red}{$-$}   & No differentiation depending on the maximum assumable error is made.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2125,17 +2114,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Root mean square error (RMSE)}
 
-\hrule
-
 
 \subsection[Normalized root mean square error (NRMSE)]{Normalized root mean square error (NRMSE) \cite{chang2004air, kim2005missing}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Normalization of RMSE. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Normalization of RMSE. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Comparison of models that differ significantly. \\
 		\textcolor{Red}{$-$}   & Not sensitive to outliers and scaling.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2152,17 +2139,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Normalized root mean square error (NRMSE)}
 
-\hrule
-
 
 \subsection[Root mean squared logarithmic error (RMSLE)]{Root mean squared logarithmic error (RMSLE) \cite{nafees2021predictive}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the mean squared error of the logarithmized ground truth in comparison to the logarithmized predictions. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the mean squared error of the logarithmized ground truth in comparison to the logarithmized predictions. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & Robust to outliers. \\
 		\textcolor{Red}{$-$}   & Biased penalty. Underestimation is penalized more than overestimation.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2172,17 +2157,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Root mean squared logarithmic error (RMSLE)}
 
-\hrule
-
 
 \subsection[Peak signal-to-noise ratio (PSNR)]{Peak signal-to-noise ratio (PSNR) \cite{salomon2004data, huynh2008scope}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the MSE in relation to the maximum assumable error. (range: $[0, \infty)$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the MSE in relation to the maximum assumable error. (range: $[0, \infty)$)} \\
 		\textcolor{Green}{$+$} & A differentiation depending on the maximum assumable error is made. \\
 		\textcolor{Red}{$-$}   & No differentiation depending on structural similarities is made.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2196,17 +2179,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Peak signal-to-noise ratio (PSNR)}
 
-\hrule
-
 
 \subsection[Structural similarity (SSIM)]{Structural similarity (SSIM) \cite{wang2004image, ghodrati2019mr}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the structural similarity using the mean, variance, and covariance. (range: $[-1, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the structural similarity using the mean, variance, and covariance. (range: $[-1, 1]$)} \\
 		\textcolor{Green}{$+$} & Provides more accurate results by considering structural characteristics. \cite{wang2004image} \\
 		\textcolor{Red}{$-$}   & Increased calculation complexity.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2223,17 +2204,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{conditions}
 \myequations{Structural similarity (SSIM)}
 
-\hrule
-
 
 \subsection[Structural dissimilarity (DSSIM)]{Structural dissimilarity (DSSIM) \cite{wang2004image, ghodrati2019mr}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the structural dissimilarity using the mean, variance, and covariance. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the structural dissimilarity using the mean, variance, and covariance. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Provides more accurate results by considering structural characteristics. \cite{wang2004image} \\
 		\textcolor{Red}{$-$}   & Increased calculation complexity.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2243,17 +2222,19 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Structural dissimilarity (DSSIM)}
 
-\hrule
-
 
 \subsection[Intersection over union (IoU)]{Intersection over union (IoU) \cite{jaccard1912distribution, murphy1996finley, rezatofighi2019generalized, zou2023object}}
 
+Intersection over union (IoU) \cite{jaccard1912distribution, murphy1996finley, rezatofighi2019generalized, zou2023object} is a fundamental metric used primarily to evaluate the accuracy of object detection algorithms in tasks such as image segmentation and computer vision. IoU assesses the overlap between predicted and ground truth objects by calculating the ratio of the area of overlap to the area of union between the predicted and the actual annotations. It provides a clear, quantitative measure of how closely the contours of detected objects match the true object boundaries, encompassing both the correctness and precision of the detection in a single score. A higher IoU score indicates a greater degree of overlap and, consequently, an improved model performance. A perfect score of 1.0 represents an exact match between the predicted and the ground truth area. Because of its ability to accurately measure the effectiveness of detection models in capturing the true object space, IoU is extensively utilized in evaluating models for tasks such as autonomous driving, aerial image analysis \cite{al2018survey, akbari2021applications}, and medical imaging, where precise localization is critical. Its widespread adoption stems from its simplicity and effectiveness in providing a direct indicator of spatial accuracy.
+
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the similarity of two sets of values via the intersection over the union of both sets. In machine learning also known as the Jaccard index (JI). (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Can be well used for image segmentation and object detection. \\
-		\textcolor{Red}{$-$}   & No differentiation depending on the size of both sets is made.
-	\end{tabular}
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the similarity of two sets of values via the intersection over the union of both sets. In machine learning also known as the Jaccard index (JI). (range: $[0, 1]$)} \\
+		\textcolor{Green}{$+$} & Captures overlap between predicted and true regions. \\
+		\textcolor{Green}{$+$} & Commonly used in image segmentation and object detection tasks. \\
+		\textcolor{Red}{$-$}   & Sensitive to small region misalignment. \\
+		\textcolor{Red}{$-$}   & Does not distinguish between types of errors.
+	\end{tabularx}
 \end{table}
 
 \begin{figure}[H]
@@ -2295,17 +2276,15 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Intersection over union (IoU)}
 
-\hrule
-
 
 \subsection[Dice coefficient (DC)]{Dice coefficient (DC) \cite{dice1945measures, sorenson1948method}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the similarity of two sets of values via twice the intersection over the sum of both sets. In machine learning also known as the F1-score. (range: $[0, 1]$)} \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the similarity of two sets of values via twice the intersection over the sum of both sets. In machine learning also known as the F1-score. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & Can be well used for image segmentation and object detection. \\
 		\textcolor{Red}{$-$}   & No differentiation depending on the size of both sets is made.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{figure}[H]
@@ -2350,18 +2329,14 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Dice coefficient (DC)}
 
-\hrule
-
 
 \subsection[Overlap coefficient (OC)]{Overlap coefficient (OC) \cite{szymkiewicz1934conlribution, sempson1947holarctic, bell1962mutual, goodall1978sample}}
 
 \begin{table}[H]\centering
-	\begin{tabular}{m{0.05\textwidth}m{0.85\textwidth}}
-		\multicolumn{2}{m{0.95\textwidth}}{Calculates the similarity of two sets of values via the intersection over the smaller set of both sets. (range: $[0, 1]$)} \\
-		\textcolor{Green}{$+$} & Can be well used for image segmentation and object detection. \\
+	\begin{tabularx}{\textwidth}{@{}lX}
+		\multicolumn{2}{@{}X}{Calculates the similarity of two sets of values via the intersection over the smaller set of both sets. (range: $[0, 1]$)} \\
 		\textcolor{Green}{$+$} & A differentiation depending on the size of both sets is made. \\
-		\textcolor{Red}{$-$}   & A differentiation based on set size can be detrimental.
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 \begin{equation}
@@ -2371,14 +2346,16 @@ The following evaluation metrics within the context of machine learning are moti
 \end{equation}
 \myequations{Overlap coefficient (OC)}
 
-\hrule
+
+
+
+\clearpage
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Functions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\subsection*{Functions}
+\subsection{Functions}
 
 The following table gives an overview of computer vision metrics commonly used with the Python programming language machine learning libraries scikit-learn\footnote{scikit-learn project page, \url{https://scikit-learn.org/stable/}}, TensorFlow\footnote{TensorFlow project page, \url{https://www.tensorflow.org/}} (and Keras\footnote{Keras project page, \url{https://keras.io/}}), and PyTorch\footnote{PyTorch project page, \url{https://pytorch.org/}}\textsuperscript{,}\footnote{TorchMetrics project page, \url{https://torchmetrics.readthedocs.io/en/stable/}}.
 
@@ -2492,6 +2469,10 @@ Tobias Schlosser, Michael Friedrich, and Trixy Meyer conducted this contribution
 
 
 \clearpage
+
+
+
+
 \bibliographystyle{IEEEtran}
 \bibliography{library}
 
