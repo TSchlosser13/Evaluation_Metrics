@@ -1,12 +1,14 @@
 %===============================================================================
-% A Consolidated Overview of Evaluation and Performance Metrics for
-%  Machine Learning and Computer Vision
+% A Consolidated Overview of
+%  Evaluation and Performance Metrics
+%  for Machine Learning and Computer Vision
 %===============================================================================
-% v0.3 - 01.07.2024 (current version): general text and figure work
+% v0.4 - 01.03.2026 (current version): general text work
+% v0.3 - 01.07.2024: general text and figure work
 % v0.2 - 11.05.2024: general text work
 % v0.1 - 01.11.2023: init
 %
-% 2023-2024 Tobias Schlosser, Michael Friedrich, Trixy Meyer, and Danny Kowerko
+% 2023-2026 Tobias Schlosser, Michael Friedrich, Trixy Meyer, and Danny Kowerko
 %
 % This manuscript is licensed under the Creative Commons Attribution 4.0
 %  International (CC BY 4.0) license
@@ -143,7 +145,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{\Huge A Consolidated Overview of Evaluation and Performance Metrics for Machine Learning and Computer Vision}
+\title{\Huge A Consolidated Overview of \\ Evaluation and Performance Metrics \\ for Machine Learning and Computer Vision}
 
 \author{
     Tobias Schlosser\ORCID{\ORCIDSchlosser}, Michael Friedrich\ORCID{\ORCIDFriedrich}, Trixy Meyer\ORCID{\ORCIDMeyer}, and Danny Kowerko\ORCID{\ORCIDKowerko} \\[1ex]
@@ -165,7 +167,7 @@
 \section*{Abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the rapidly evolving fields of machine learning (ML) and computer vision (CV), selecting and applying appropriate evaluation and performance metrics are crucial for advancing and validating innovative models. These metrics not only guide the development and fine-tuning of algorithms but also shape the interpretation of outcomes in diverse applications, such as automated disease diagnosis and autonomous driving. This contribution is motivated by recent advancements in artificial intelligence (AI) and deep learning (DL), particularly in big data analysis for tasks such as object detection and classification using learning-based approaches, including artificial neural networks (ANN) and deep neural networks (DNN). We present well-established evaluation metrics, detailing their advantages, disadvantages, and origins. By consolidating current knowledge and providing insights into the effective use of these metrics, this contribution aims to equip researchers and practitioners with the essential tools to critically evaluate and enhance the robustness and reliability of their models.
+In the rapidly evolving fields of machine learning (ML) and computer vision (CV), selecting and applying appropriate evaluation and performance metrics are crucial for advancing and validating predictive models. These metrics not only guide the development and fine-tuning of algorithms but also shape the interpretation of outcomes in diverse applications, ranging from automated disease diagnosis to autonomous driving. This contribution is motivated by recent advances in artificial intelligence (AI) and deep learning (DL). In particular, learning-based approaches---most notably artificial neural networks (ANN) and deep neural networks (DNN)---have demonstrated exceptional performance in big data analyses, including object detection and classification. For this purpose, we present well-established evaluation metrics, detailing their dis-/advantages and origins. By consolidating current knowledge and providing insights into their effective utilization, this contribution aims to equip researchers and practitioners with the essential tools to critically evaluate and enhance the robustness and reliability of their models.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -228,8 +230,8 @@ This contribution provides a comprehensive overview of evaluation and performanc
         ]
             % Data: https://drive.google.com/drive/folders/1jcFRe6edMYPwmNIHZiY2JHiNEaj4-xWG, "fig_1.1.1.csv"
             \addplot[draw=draw_color, fill=fill_color] coordinates {
-                (2010,  87.797) (2011,  87.277) (2012,  89.097) (2013,  92.240) (2014,  97.377) 
-                (2015, 104.872) (2016, 108.645) (2017, 120.519) (2018, 143.396) (2019, 177.182) 
+                (2010,  87.797) (2011,  87.277) (2012,  89.097) (2013,  92.240) (2014,  97.377)
+                (2015, 104.872) (2016, 108.645) (2017, 120.519) (2018, 143.396) (2019, 177.182)
                 (2020, 201.635) (2021, 239.594) (2022, 242.289)
             };
         \end{axis}
@@ -2542,7 +2544,7 @@ The following table gives an overview of computer vision metrics commonly used w
         &
         \href{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_percentage_error.html\#sklearn.metrics.mean_absolute_percentage_error}{mean\_absolute\_percentage\_error}
         &
-        \href{https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanAbsolutePercentageError}{keras.losses.MeanAbsolutePercentageError}        
+        \href{https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanAbsolutePercentageError}{keras.losses.MeanAbsolutePercentageError}
         &
         \href{https://torchmetrics.readthedocs.io/en/latest/regression/mean_absolute_percentage_error.html}{MeanAbsolutePercentageError}
         \\
@@ -2619,7 +2621,7 @@ The following table gives an overview of computer vision metrics commonly used w
 \section{Conclusion and Outlook}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the dynamic and rapidly evolving fields of machine learning (ML) and computer vision (CV), the selection and application of appropriate evaluation and performance metrics are fundamental to the advancement and validation of innovative models. This manuscript provided a comprehensive overview of well-established and novel metrics, detailing their advantages, disadvantages, and origins. By consolidating current knowledge and providing insights into the effective use of these metrics, we aimed to equip researchers and practitioners with the essential tools to critically evaluate and improve the robustness and reliability of their models. We conclude that traditional metrics such as precision, recall, and accuracy, while foundational, often fail to capture the performance of ML and CV models, particularly in cases involving imbalanced data sets or complex classification tasks. Metrics, such as the F-score variants, the receiver operating characteristic curve (ROC curve) and the area under the curve (AUC), as well as the structural similarity and dissimilarity metrics, provide deeper insights and facilitate a more effective model evaluation and comparison. These metrics help to address challenges related to model interpretability, accountability, and robustness, which are crucial for real-world applications.
+In the dynamic and rapidly evolving fields of machine learning (ML) and computer vision (CV), the selection and application of appropriate evaluation and performance metrics are fundamental to the advancement and validation of innovative models. This manuscript provided a comprehensive overview of well-established and novel metrics, detailing their dis-/advantages and origins. By consolidating current knowledge and providing insights into the effective use of these metrics, we aimed to equip researchers and practitioners with the essential tools to critically evaluate and improve the robustness and reliability of their models. We conclude that traditional metrics such as precision, recall, and accuracy, while foundational, often fail to capture the performance of ML and CV models, particularly in cases involving imbalanced data sets or complex classification tasks. Metrics, such as the F-score variants, the receiver operating characteristic curve (ROC curve) and the area under the curve (AUC), as well as the structural similarity and dissimilarity metrics, provide deeper insights and facilitate a more effective model evaluation and comparison. These metrics help to address challenges related to model interpretability, accountability, and robustness, which are crucial for real-world applications.
 
 As the field of artificial intelligence (AI) continues to advance, so will the metrics used to evaluate and benchmark models. Future advancements in ML and CV will introduce novel algorithms and methodologies, necessitating the development of metrics that are able to capture their performance characteristics. The ongoing evolution of big data analysis, driven by advancements in AI and deep learning (DL), will therefore also shape the landscape of evaluation metrics. As models become more sophisticated and data sets more complex, there will be an ever-increasing need for metrics that can provide a holistic view of model performance, accounting for factors such as fairness but also ethical considerations. The further integration of ML and CV into interdisciplinary applications will spur the development of domain-specific needs tailored to particular industries and research areas. This trend will necessitate a collaborative approach, bringing together experts from different fields to develop and standardize metrics that can drive innovation and ensure the reliability of ML and CV systems.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
