@@ -31,8 +31,8 @@ make clean && make
 ```
 
 
-Example
--------
+The manuscript
+--------------
 
-![main_300PPI-0.png](main_300PPI-0.png "Evaluation and Performance Metrics example")
+![main_300PPI-0.png](main_300PPI-0.png "Evaluation and Performance Metrics manuscript")
 
